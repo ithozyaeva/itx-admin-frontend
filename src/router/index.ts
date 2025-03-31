@@ -13,10 +13,10 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: to => {
+      redirect: () => {
         checkAuth()
         return isAuthenticated.value ? { name: 'dashboard' } : { name: 'login' }
-      }
+      },
     },
     {
       path: '/login',
