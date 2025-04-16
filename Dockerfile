@@ -1,4 +1,4 @@
-FROM node:20-alpine as build-stage
+FROM node:20-alpine
 
 WORKDIR /app
 
@@ -10,13 +10,8 @@ COPY . .
 
 RUN npm run build
 
-FROM nginx:alpine as production-stage
+# Создаем директорию для статики
+RUN mkdir -p /app/dist
 
-COPY --from=build-stage /app/dist /usr/share/nginx/html
-
-# Добавляем конфигурацию для SPA маршрутизации
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"] 
+# Копируем собранные файлы в dist
+CMD ["sh", "-c", "cp -r /app/dist/* /static/admin-frontend/"]
