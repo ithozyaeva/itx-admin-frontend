@@ -9,6 +9,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/admin/',
   plugins: [
     vue(),
     vueDevTools(),
@@ -27,4 +28,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+      }
+    }
+  }
 })
