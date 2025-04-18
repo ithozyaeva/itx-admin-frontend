@@ -115,7 +115,7 @@ export class BaseService<T> {
   update = async (id: number, data: DeepPartial<T>): Promise<T | null> => {
     try {
       this.isLoading.value = true
-      const response = await api.put(`${this.basePath}/${id}`, { json: data }).json<T>()
+      const response = await api.put(`${this.basePath}/${id}`, { json: { ...data, id } }).json<T>()
 
       this.toast.toast({
         title: 'Успешно',
