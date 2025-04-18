@@ -80,7 +80,7 @@ onMounted(memberService.search)
                 </TableCell>
               </TableRow>
               <TableRow v-for="member in memberService.items.value.items" :key="member.id">
-                <TableCell>{{ member.name }}</TableCell>
+                <TableCell>{{ member.firstName ?? "" }} {{ member.lastName ?? "" }}</TableCell>
                 <TableCell>{{ member.tg }}</TableCell>
                 <TableCell class="text-right">
                   <Button variant="ghost" size="sm" @click="openEditModal(member.id)">

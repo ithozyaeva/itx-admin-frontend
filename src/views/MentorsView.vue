@@ -56,7 +56,7 @@ onMounted(mentorService.search)
                 </TableCell>
               </TableRow>
               <TableRow v-for="mentor in mentorService.items.value.items" :key="mentor.id">
-                <TableCell>{{ mentor.name }}</TableCell>
+                <TableCell>{{ mentor.firstName ?? "" }} {{ mentor.lastName ?? "" }}</TableCell>
                 <TableCell>{{ mentor.tg }}</TableCell>
                 <TableCell>{{ mentor.occupation }}</TableCell>
                 <TableCell>{{ mentor.experience }}</TableCell>

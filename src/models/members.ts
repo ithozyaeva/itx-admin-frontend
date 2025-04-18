@@ -1,17 +1,35 @@
 export interface Member {
   id: number
-  name: string
+  firstName: string
+  lastName: string
   tg: string
+  telegramID: number
   isMentor: boolean
+  role: MemberRole
+  birthday: string
 }
 
 export interface CreateMemberDto {
-  name: string
+  firstName: string
+  lastName: string
   tg: string
+  role: MemberRole
 }
 
 export interface UpdateMemberDto {
   id: number
-  name: string
+  firstName: string
+  lastName: string
   tg: string
+  role: MemberRole
 }
+
+export type MemberRole = 'UNSUBSCRIBER' | 'SUBSCRIBER'
+
+export const MEMBER_ROLE_OPTIONS: Array<{ value: MemberRole, label: string }> = [{
+  value: 'UNSUBSCRIBER',
+  label: 'Ансаб',
+}, {
+  value: 'SUBSCRIBER',
+  label: 'Саб',
+}]
