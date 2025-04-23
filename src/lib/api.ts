@@ -9,7 +9,7 @@ let isRefreshing = false
 let refreshPromise: Promise<string | null> | null = null
 
 const api = ky.create({
-  prefixUrl: "/api",
+  prefixUrl: '/api',
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',

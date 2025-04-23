@@ -14,7 +14,8 @@ export interface ProfTag {
  * Ментор.
  *
  * @prop id - идентификатор ментора.
- * @prop name - имя ментора.
+ * @prop firstName - имя ментора.
+ * @prop lastName - фамилия ментора.
  * @prop tg - ссылка на Telegram.
  * @prop order - порядковый номер ментора.
  * @prop occupation - профессия ментора.
@@ -25,7 +26,8 @@ export interface ProfTag {
  */
 export interface Mentor {
   id: number
-  name: string
+  firstName: string
+  lastName: string
   tg: string
   order: number
   memberId: number

@@ -110,7 +110,7 @@ function handleCancel() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem v-for="mentorItem in allMentors" :key="mentorItem.id" :value="mentorItem">
-              {{ mentorItem.name }}
+              {{ mentorItem.firstName ?? "" }} {{ mentorItem.lastName ?? "" }}
             </SelectItem>
           </SelectContent>
         </Select>
