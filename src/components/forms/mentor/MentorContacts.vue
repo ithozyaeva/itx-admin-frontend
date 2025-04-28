@@ -17,7 +17,7 @@ const emit = defineEmits(['update:contacts'])
 function addContact() {
   const newContacts = [...props.contacts]
   newContacts.push({
-    type: 1, // Тип по умолчанию
+    type: 1, // Тип по умолчанию, TODO: в базе поменять int на varchar
     link: '',
   })
   emit('update:contacts', newContacts)
@@ -64,15 +64,12 @@ function removeContact(index: number) {
                     Telegram
                   </SelectItem>
                   <SelectItem :value="2">
-                    WhatsApp
-                  </SelectItem>
-                  <SelectItem :value="3">
                     Email
                   </SelectItem>
-                  <SelectItem :value="4">
+                  <SelectItem :value="3">
                     Телефон
                   </SelectItem>
-                  <SelectItem :value="5">
+                  <SelectItem :value="4">
                     Другое
                   </SelectItem>
                 </SelectContent>
