@@ -47,6 +47,7 @@ onMounted(async () => {
       values.value.tg = member.tg
       values.value.tgId = member.telegramID
       values.value.birthday = member.birthday
+      values.value.role = member.role
     }
     isLoading.value = false
   }
