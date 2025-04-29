@@ -1,5 +1,5 @@
 import { useToast } from '@/components/ui/toast'
-import api from '@/lib/api'
+import ky from 'ky'
 import { ref } from 'vue'
 
 export interface LoginCredentials {
@@ -23,7 +23,7 @@ const { toast } = useToast()
 export async function login(credentials: LoginCredentials): Promise<string | null> {
   try {
     isLoading.value = true
-    const response = await api.post('auth/login', {
+    const response = await ky.post('/api/auth/login', {
       json: credentials,
     }).json<TokenResponse>()
 
@@ -65,7 +65,7 @@ export async function login(credentials: LoginCredentials): Promise<string | nul
  */
 export async function refreshToken(token: string): Promise<string | null> {
   try {
-    const response = await api.post('auth/refresh', {
+    const response = await ky.post('/api/auth/refresh', {
       json: { token },
       hooks: {
         beforeRequest: [
