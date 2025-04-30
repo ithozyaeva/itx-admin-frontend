@@ -89,7 +89,7 @@ onMounted(memberService.search)
                   <Button variant="ghost" size="sm" class="text-destructive" @click="memberService.delete(member.id)">
                     <Trash class="h-4 w-4" />
                   </Button>
-                  <Button v-if="!member.isMentor" variant="ghost" size="sm" class="text-primary" @click="handleMakeMentor(member.id)">
+                  <Button v-if="member.role !== 'MENTOR'" variant="ghost" size="sm" class="text-primary" @click="handleMakeMentor(member.id)">
                     Сделать ментором
                   </Button>
                 </TableCell>
