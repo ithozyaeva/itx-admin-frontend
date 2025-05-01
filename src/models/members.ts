@@ -24,7 +24,7 @@ export interface UpdateMemberDto {
   role: MemberRole
 }
 
-export type MemberRole = 'UNSUBSCRIBER' | 'SUBSCRIBER'
+export type MemberRole = 'UNSUBSCRIBER' | 'SUBSCRIBER' | 'MENTOR'
 
 export const MEMBER_ROLE_OPTIONS: Array<{ value: MemberRole, label: string }> = [{
   value: 'UNSUBSCRIBER',
@@ -32,4 +32,7 @@ export const MEMBER_ROLE_OPTIONS: Array<{ value: MemberRole, label: string }> = 
 }, {
   value: 'SUBSCRIBER',
   label: 'Саб',
+}, {
+  value: 'MENTOR',
+  label: 'Ментор',
 }]
