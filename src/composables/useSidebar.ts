@@ -40,6 +40,11 @@ export function useSidebar() {
       path: '/mentor-reviews',
       icon: MessageSquare,
     },
+    {
+      title: 'События',
+      path: '/events',
+      icon: Users,
+    },
   ])
 
   const toggleSidebar = () => {
