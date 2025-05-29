@@ -6,6 +6,7 @@ const DashboardView = () => import('@/views/DashboardView.vue')
 const MentorsView = () => import('@/views/MentorsView.vue')
 const MembersView = () => import('@/views/MembersView.vue')
 const ReviewsView = () => import('@/views/ReviewsView.vue')
+const EventsView = () => import('@/views/EventsView.vue')
 const MentorsReviewsView = () => import('@/views/MentorsReviewsView.vue')
 
 const router = createRouter({
@@ -51,6 +52,12 @@ const router = createRouter({
       path: '/mentor-reviews',
       name: 'mentor-reviews',
       component: MentorsReviewsView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/events',
+      name: 'events',
+      component: EventsView,
       meta: { requiresAuth: true },
     },
   ],
