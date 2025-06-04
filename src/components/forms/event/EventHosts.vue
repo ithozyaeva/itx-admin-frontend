@@ -5,14 +5,19 @@ import { Combobox, ComboboxAnchor, ComboboxEmpty, ComboboxGroup, ComboboxInput, 
 import { TagsInput, TagsInputInput, TagsInputItem, TagsInputItemDelete, TagsInputItemText } from '@/components/ui/tags-input'
 import { memberService } from '@/services/memberService'
 import { asyncComputed, useDebounce } from '@vueuse/core'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 const props = defineProps<{
   hosts: Member[]
 }>()
 
 const emit = defineEmits(['update:hosts'])
-const localHosts = ref<Member[]>(props.hosts)
+
+const localHosts = computed({
+  get: () => props.hosts,
+  set: (val: Member[]) => emit('update:hosts', val),
+})
+
 const searchMemberString = ref('')
 const debouncedSearch = useDebounce(searchMemberString, 400)
 const openCombobox = ref(false)
@@ -49,21 +54,18 @@ function pushHost(newHost: Member) {
   }
 
   localHosts.value.push(newHost)
-  emit('update:hosts', localHosts.value)
 }
 
 // Удаление профессионального тега
 function removeHost(host: AcceptableInputValue) {
   host = host as Member
-  const index = props.hosts.findIndex(t => t.id === host.id)
+  const index = localHosts.value.findIndex(t => t.id === host.id)
 
   removeHostByIndex(index)
 }
 // Удаление тега
 function removeHostByIndex(index: number) {
-  const newHosts = [...props.hosts]
-  newHosts.splice(index, 1)
-  emit('update:hosts', newHosts)
+  localHosts.value.splice(index, 1)
 }
 
 function render(host: AcceptableInputValue) {
@@ -80,7 +82,7 @@ function convertValue(text: string) {
   <Combobox v-model="localHosts" v-model:open="openCombobox" :ignore-filter="true">
     <ComboboxAnchor class="w-full" as-child>
       <TagsInput v-model:model-value="localHosts" :display-value="render" :convert-value="convertValue" @update:model-value="addHost" @remove-tag="removeHost">
-        <TagsInputItem v-for="item in props.hosts" :key="item.id" :value="item">
+        <TagsInputItem v-for="item in localHosts" :key="item.id" :value="item">
           <TagsInputItemText />
           <TagsInputItemDelete @click="removeHost(item)" />
         </TagsInputItem>
