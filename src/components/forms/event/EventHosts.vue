@@ -27,7 +27,7 @@ const findedMembers = asyncComputed(async () => {
   if (!debouncedSearch.value)
     return []
 
-  return (await memberService.search({ username: debouncedSearch.value })).items!
+  return (await memberService.search({ username: debouncedSearch.value, offset: 0, limit: 100 })).items!
 }, [])
 
 function addHost(newHosts: AcceptableInputValue[]) {

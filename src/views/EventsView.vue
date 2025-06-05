@@ -7,12 +7,13 @@ import { Pagination, PaginationEllipsis, PaginationFirst, PaginationLast, Pagina
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { useModal } from '@/composables/useModal'
 import { eventsService } from '@/services/eventsService'
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import Pencil from '~icons/lucide/pencil'
 import Plus from '~icons/lucide/plus'
 import Trash from '~icons/lucide/trash'
 
 onMounted(eventsService.search)
+onUnmounted(eventsService.clearPagination)
 
 const selectedEventId = ref<number>()
 const { open, isOpen } = useModal()
