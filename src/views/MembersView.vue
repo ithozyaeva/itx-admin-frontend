@@ -7,7 +7,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Pagination, PaginationEllipsis, PaginationFirst, PaginationLast, PaginationList, PaginationListItem, PaginationNext, PaginationPrev } from '@/components/ui/pagination'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { memberService } from '@/services/memberService'
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 import Pencil from '~icons/lucide/pencil'
 import Plus from '~icons/lucide/plus'
@@ -48,6 +48,7 @@ function handleMakeMentor(memberId: number) {
 }
 
 onMounted(memberService.search)
+onUnmounted(memberService.clearPagination)
 </script>
 
 <template>

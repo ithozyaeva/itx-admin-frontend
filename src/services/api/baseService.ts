@@ -33,6 +33,10 @@ export class BaseService<T> {
     this.search()
   }
 
+  clearPagination = () => [
+    this.pagination.value.offset = 0,
+  ]
+
   /** Метод получения всех сущностей */
   search = async (params?: Record<string, any>): Promise<Registry<T>> => {
     try {

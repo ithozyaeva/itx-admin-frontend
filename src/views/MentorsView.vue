@@ -7,7 +7,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Pagination, PaginationEllipsis, PaginationFirst, PaginationLast, PaginationList, PaginationListItem, PaginationNext, PaginationPrev } from '@/components/ui/pagination'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { mentorService } from '@/services/mentorService'
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 import Pencil from '~icons/lucide/pencil'
 import Trash from '~icons/lucide/trash'
@@ -26,6 +26,7 @@ function handleEditMentor(mentor: Mentor) {
 }
 
 onMounted(mentorService.search)
+onUnmounted(mentorService.clearPagination)
 </script>
 
 <template>

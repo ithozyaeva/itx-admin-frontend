@@ -8,13 +8,14 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { useModal } from '@/composables/useModal'
 import { REVIEW_STATUS_NAMES } from '@/models/reviewOnCommunity'
 import { reviewOnCommunityService } from '@/services/reviewOnCommunityService'
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 import Pencil from '~icons/lucide/pencil'
 import Plus from '~icons/lucide/plus'
 import Trash from '~icons/lucide/trash'
 
 onMounted(reviewOnCommunityService.search)
+onUnmounted(reviewOnCommunityService.clearPagination)
 
 const selectedReviewId = ref<number>()
 const { open, isOpen } = useModal()
